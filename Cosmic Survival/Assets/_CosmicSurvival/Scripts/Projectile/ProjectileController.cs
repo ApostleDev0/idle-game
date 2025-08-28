@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ProjectileController : MonoBehaviour
 {
-    // toc do di chuyen cua dan 
+    // bien toc do di chuyen cua dan
     public float speed = 10f;
     
     // Start is called before the first frame update
