@@ -28,4 +28,15 @@ public class ProjectileController : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    // ham va cham voi enemy
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // kiem tra xem doi tuong va cham co phai Enemy ko
+        if(collision.gameObject.CompareTag("Enemy"))
+        {
+            Destroy(collision.gameObject);// huy enemy
+            Destroy(gameObject);// huy vien dan
+        }
+    }
 }
