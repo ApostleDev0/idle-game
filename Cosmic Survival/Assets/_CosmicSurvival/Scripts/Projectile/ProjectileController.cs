@@ -4,39 +4,45 @@ using UnityEngine;
 
 public class ProjectileController : MonoBehaviour
 {
-    // bien toc do di chuyen cua dan
-    public float speed = 10f;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-       
-    }
+    public float speed = 10f;              // toc do projectile
+    public GameObject hitEffectPrefab;     // hieu ung khi hit
 
-    // Update is called once per frame
-    void Update()
-    {
-        // transform.Translate la ham cua Unity
-        // di chuyen doi tuong theo 1 vector va toc do dc cung cap
-        // Vector2.up la vector luon huong len tren
-        // speed * Time.deltaTime = quang duong di duoc trong 1 khung hinh
-        transform.Translate(Vector2.up *  speed * Time.deltaTime);
+    private GameObject target;             // muc tieu hien tai
+    private Vector3 direction;             // huong ban
 
-        // ham tu huy khi ra khoi map
-        if(transform.position.y > 10f)
+    public void SetTarget(GameObject enemy)
+    {
+        target = enemy;
+
+        if (target != null)
         {
-            Destroy(gameObject);
+            // tinh toan huong di tu player -> enemy
+            direction = (target.transform.position - transform.position).normalized;
+
+            // xoay dau dan theo huong nao
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0, 0, angle);
         }
     }
 
-    // ham va cham voi enemy
-    private void OnCollisionEnter2D(Collision2D collision)
+    void Update()
     {
-        // kiem tra xem doi tuong va cham co phai Enemy ko
-        if(collision.gameObject.CompareTag("Enemy"))
+        // dan di chuyen theo huong
+        transform.position += direction * speed * Time.deltaTime;
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
         {
-            Destroy(collision.gameObject);// huy enemy
-            Destroy(gameObject);// huy vien dan
+            // tao hieu ung no
+            if (hitEffectPrefab != null)
+            {
+                GameObject effect = Instantiate(hitEffectPrefab, transform.position, Quaternion.identity);
+                Destroy(effect, 1f);
+            }
+            Destroy(collision.gameObject);// xoa enemy khi hit
+            Destroy(gameObject);// xoa projectile
         }
     }
 }

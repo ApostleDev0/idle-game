@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 6430971706690309912}
   - component: {fileID: 982372624467248660}
   - component: {fileID: 8870707031792794853}
+  - component: {fileID: -594024150869380876}
   m_Layer: 0
   m_Name: Projectile
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127,6 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  hitEffectPrefab: {fileID: 0}
 --- !u!61 &8870707031792794853
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -172,3 +174,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-594024150869380876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8373795395667623114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29e270578a8277c458b488a1e518d55e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeTime: 0.5

@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class ProjectileHit : MonoBehaviour
 {
+    public float lifeTime = 0.5f; // time blow for animation
+
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Player has spawned!");// thong bao player tren console
+        Destroy(gameObject, lifeTime);
     }
 
     // Update is called once per frame
